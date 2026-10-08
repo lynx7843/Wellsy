@@ -14,14 +14,13 @@ Wellsy is a personal health tracking app that brings nutrition, activity, hydrat
 ## Tech Stack
 
 - **Frontend**: Flutter (Dart)
-- **Data storage**: MongoDB Atlas
-- **Authentication**: MongoDB Atlas
-- **Fonts**: Google Fonts (Plus Jakarta Sans)
+- **Data storage**: FireBase
+- **Authentication**: FireBase
 
 ## Getting Started
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/lynx7843/Wellsy.git
 cd Wellsy
 flutter pub get
 flutter run
