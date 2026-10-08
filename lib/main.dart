@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_shell.dart';
+import 'screens/create_account.dart' show SignInScreen;
 import 'theme/app_theme.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class WellsyApp extends StatelessWidget {
       title: 'Wellsy',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const HomeShell(),
+      home: const SignInScreen(),
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'home_shell.dart';
+
 void main() => runApp(const WellsyApp());
 
 class WellsyApp extends StatelessWidget {
@@ -3606,6 +3608,13 @@ class _SignInScreenState extends State<SignInScreen> {
       );
       return;
     }
+    // Testing credentials only; no backend authentication yet.
+    if (email != 'test@email.com' || _password.text != 'password') {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Incorrect email or password')),
+      );
+      return;
+    }
     FocusScope.of(context).unfocus();
     setState(() => _phase = _SignInPhase.syncing);
     await Future.delayed(const Duration(milliseconds: 1000));
@@ -3613,7 +3622,9 @@ class _SignInScreenState extends State<SignInScreen> {
     setState(() => _phase = _SignInPhase.done);
     await Future.delayed(const Duration(milliseconds: 1200));
     if (!mounted) return;
-    setState(() => _phase = _SignInPhase.idle);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const HomeShell()),
+    );
   }
 
   BoxDecoration get _fieldDeco => BoxDecoration(

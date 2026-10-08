@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common.dart';
-import 'placeholder_screen.dart';
+import 'create_account.dart' show NutritionScreen, ActivityScreen, HabitsScreen;
 import 'today_screen.dart';
 
 class _Tab {
@@ -42,7 +42,18 @@ class _HomeShellState extends State<HomeShell> {
         index: _index,
         children: [
           const TodayScreen(),
-          for (final tab in _tabs.skip(1)) PlaceholderScreen(title: tab.label, icon: tab.icon),
+          for (final screen in const [NutritionScreen(), ActivityScreen(), HabitsScreen()])
+            Builder(
+              builder: (context) {
+                // Keep content clear of the frosted header and nav bar.
+                final insets = MediaQuery.paddingOf(context);
+                return Padding(
+                  padding: EdgeInsets.only(top: insets.top, bottom: insets.bottom),
+                  child: MediaQuery.removePadding(
+                      context: context, removeTop: true, removeBottom: true, child: screen),
+                );
+              },
+            ),
         ],
       ),
       bottomNavigationBar: _WellsyNavBar(
