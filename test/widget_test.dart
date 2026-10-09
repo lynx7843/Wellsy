@@ -14,6 +14,12 @@ void main() {
 
     await tester.pumpWidget(const WellsyApp());
 
+    // Sign in with the prefilled demo credentials.
+    await tester.tap(find.text('Sign In'));
+    await tester.pump(const Duration(milliseconds: 1000));
+    await tester.pump(const Duration(milliseconds: 1200));
+    await tester.pump(const Duration(milliseconds: 600));
+
     expect(find.text('Wellsy'), findsOneWidget);
     expect(find.byIcon(Icons.person_rounded), findsOneWidget);
 

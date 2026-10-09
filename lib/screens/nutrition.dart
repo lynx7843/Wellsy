@@ -23,7 +23,8 @@ class WellsyApp extends StatelessWidget {
       title: 'Wellsy',
       debugShowCheckedModeBanner: false,
       theme: base.copyWith(
-        textTheme: GoogleFonts.plusJakartaSansTextTheme(base.textTheme),
+        textTheme: base.textTheme
+            .apply(fontFamily: GoogleFonts.plusJakartaSans().fontFamily),
       ),
       home: const WellsyShell(),
     );
