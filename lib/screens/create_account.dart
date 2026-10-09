@@ -25,7 +25,8 @@ class WellsyApp extends StatelessWidget {
       title: 'Wellsy',
       debugShowCheckedModeBanner: false,
       theme: base.copyWith(
-        textTheme: GoogleFonts.plusJakartaSansTextTheme(base.textTheme),
+        textTheme: base.textTheme
+            .apply(fontFamily: GoogleFonts.plusJakartaSans().fontFamily),
       ),
       home: const WellsyShell(),
     );
@@ -3586,8 +3587,8 @@ class SignInScreen extends StatefulWidget {
 enum _SignInPhase { idle, syncing, done }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final _email = TextEditingController(text: 'sarah.miller@example.com');
-  final _password = TextEditingController(text: 'SuperSecretStreak123!');
+  final _email = TextEditingController(text: 'test@email.com');
+  final _password = TextEditingController(text: 'password');
   bool _showPassword = false;
   bool _keepSynced = true;
   _SignInPhase _phase = _SignInPhase.idle;
@@ -3743,7 +3744,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ],
                     ),
-                    child: Row(
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Icon(Icons.bolt, size: 14, color: C.tertiary),
@@ -3772,6 +3775,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 color: C.secondary,
                                 ls: 0.44)),
                       ],
+                    ),
                     ),
                   ),
                 ],
@@ -3880,7 +3884,8 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
+          Flexible(
+            child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => setState(() => _keepSynced = !_keepSynced),
             child: Row(
@@ -3900,14 +3905,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text('Keep me synced',
-                    style: wt(13,
-                        w: FontWeight.w600,
-                        color: C.onSurfaceVariant,
-                        ls: 0.26)),
+                Flexible(
+                  child: Text('Keep me synced',
+                      overflow: TextOverflow.ellipsis,
+                      style: wt(13,
+                          w: FontWeight.w600,
+                          color: C.onSurfaceVariant,
+                          ls: 0.26)),
+                ),
               ],
             ),
           ),
+          ),
+          const SizedBox(width: 8),
           GestureDetector(
             onTap: () {},
             child: Text('Forgot password?',
@@ -4020,8 +4030,13 @@ class _SignInScreenState extends State<SignInScreen> {
               children: [
                 icon,
                 const SizedBox(width: 12),
-                Text(label,
-                    style: wt(18, w: FontWeight.w600, color: fg, height: 24)),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(label,
+                        style: wt(18, w: FontWeight.w600, color: fg, height: 24)),
+                  ),
+                ),
               ],
             ),
           ),
@@ -4055,8 +4070,10 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget _footer() {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Row(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: [
@@ -4072,6 +4089,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       w: FontWeight.w700, color: C.primary, height: 24)),
             ),
           ],
+        ),
         ),
         const SizedBox(height: 8),
         Container(

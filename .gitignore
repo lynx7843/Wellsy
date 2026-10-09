@@ -97,3 +97,13 @@ service-account*.json
 # Misc
 Thumbs.db
 .claude/settings.local.json
+Desktop.ini
+.vs/
+*.bak
+*.tmp
+*.orig
+
+# Generated platform folders
+**/ios/Flutter/ephemeral/
+**/macos/Flutter/ephemeral/
+**/android/app/.cxx/
