@@ -23,8 +23,9 @@ class WellsyApp extends StatelessWidget {
       title: 'Wellsy',
       debugShowCheckedModeBanner: false,
       theme: base.copyWith(
-        textTheme: base.textTheme
-            .apply(fontFamily: GoogleFonts.plusJakartaSans().fontFamily),
+        textTheme: base.textTheme.apply(
+          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+        ),
       ),
       home: const WellsyShell(),
     );
@@ -44,10 +45,12 @@ class _WellsyShellState extends State<WellsyShell> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
     return Scaffold(
       backgroundColor: C.surface,
       extendBody: true,
@@ -75,9 +78,11 @@ class _Placeholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Text('$label — coming soon',
-            style: wt(14, color: C.onSurfaceVariant)),
-      );
+    child: Text(
+      '$label — coming soon',
+      style: wt(14, color: C.onSurfaceVariant),
+    ),
+  );
 }
 
 // ═════════════ THEME ═════════════
@@ -121,11 +126,13 @@ class C {
 const double rDefault = 16;
 const double rLg = 32;
 
-TextStyle wt(double size,
-    {FontWeight w = FontWeight.w400,
-    Color color = C.onSurface,
-    double? height,
-    double? ls}) {
+TextStyle wt(
+  double size, {
+  FontWeight w = FontWeight.w400,
+  Color color = C.onSurface,
+  double? height,
+  double? ls,
+}) {
   return GoogleFonts.plusJakartaSans(
     fontSize: size,
     fontWeight: w,
@@ -134,7 +141,6 @@ TextStyle wt(double size,
     letterSpacing: ls,
   );
 }
-
 
 /// Gently pulses its child's opacity (mirrors Tailwind's animate-pulse).
 class Pulse extends StatefulWidget {
@@ -147,8 +153,9 @@ class Pulse extends StatefulWidget {
 
 class _PulseState extends State<Pulse> with SingleTickerProviderStateMixin {
   late final AnimationController _c = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 1000))
-    ..repeat(reverse: true);
+    vsync: this,
+    duration: const Duration(milliseconds: 1000),
+  )..repeat(reverse: true);
 
   @override
   void dispose() {
@@ -157,8 +164,10 @@ class _PulseState extends State<Pulse> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      FadeTransition(opacity: Tween(begin: 1.0, end: 0.5).animate(_c), child: widget.child);
+  Widget build(BuildContext context) => FadeTransition(
+    opacity: Tween(begin: 1.0, end: 0.5).animate(_c),
+    child: widget.child,
+  );
 }
 
 // ───────────────────────── Header ─────────────────────────
@@ -199,9 +208,15 @@ class WHeader extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       Row(
                         children: [
-                          Text('Wellsy',
-                              style: wt(18,
-                                  w: FontWeight.w700, height: 24, ls: -0.2)),
+                          Text(
+                            'Wellsy',
+                            style: wt(
+                              18,
+                              w: FontWeight.w700,
+                              height: 24,
+                              ls: -0.2,
+                            ),
+                          ),
                           const SizedBox(width: 4),
                           Container(
                             width: 6,
@@ -215,14 +230,21 @@ class WHeader extends StatelessWidget implements PreferredSizeWidget {
                       ),
                       Row(
                         children: [
-                          const Icon(Icons.calendar_today,
-                              size: 13, color: C.primary),
+                          const Icon(
+                            Icons.calendar_today,
+                            size: 13,
+                            color: C.primary,
+                          ),
                           const SizedBox(width: 4),
-                          Text('Today, Oct 24',
-                              style: wt(11,
-                                  w: FontWeight.w700,
-                                  color: C.onSurfaceVariant,
-                                  ls: 0.44)),
+                          Text(
+                            'Today, Oct 24',
+                            style: wt(
+                              11,
+                              w: FontWeight.w700,
+                              color: C.onSurfaceVariant,
+                              ls: 0.44,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -291,7 +313,10 @@ class DefaultAvatarPainter extends CustomPainter {
     // shoulders
     canvas.drawOval(
       Rect.fromCenter(
-          center: Offset(w / 2, h * 0.95), width: w * 0.78, height: h * 0.72),
+        center: Offset(w / 2, h * 0.95),
+        width: w * 0.78,
+        height: h * 0.72,
+      ),
       paint,
     );
   }
@@ -419,9 +444,16 @@ class NavItem extends StatelessWidget {
           children: [
             Icon(icon, size: 22, color: fg),
             const SizedBox(height: 2),
-            Text(label,
-                style: wt(11,
-                    w: FontWeight.w700, color: fg, height: 14, ls: 0.44)),
+            Text(
+              label,
+              style: wt(
+                11,
+                w: FontWeight.w700,
+                color: fg,
+                height: 14,
+                ls: 0.44,
+              ),
+            ),
           ],
         ),
       ),
@@ -430,8 +462,6 @@ class NavItem extends StatelessWidget {
 }
 
 // ═════════════ ACTIVITY_SCREEN ═════════════
-
-
 
 class ActivityScreen extends StatelessWidget {
   const ActivityScreen({super.key});
@@ -471,25 +501,36 @@ class _StreakCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.local_fire_department,
-                      size: 20, color: C.primaryContainer),
+                  const Icon(
+                    Icons.local_fire_department,
+                    size: 20,
+                    color: C.primaryContainer,
+                  ),
                   const SizedBox(width: 4),
-                  Text('5-Day Active Streak',
-                      style: wt(18, w: FontWeight.w600, height: 24)),
+                  Text(
+                    '5-Day Active Streak',
+                    style: wt(18, w: FontWeight.w600, height: 24),
+                  ),
                 ],
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 2,
+                ),
                 decoration: BoxDecoration(
                   color: C.primaryFixed,
                   borderRadius: BorderRadius.circular(999),
                 ),
-                child: Text('In the Zone',
-                    style: wt(11,
-                        w: FontWeight.w700,
-                        color: C.onPrimaryFixedVariant,
-                        ls: 0.44)),
+                child: Text(
+                  'In the Zone',
+                  style: wt(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.onPrimaryFixedVariant,
+                    ls: 0.44,
+                  ),
+                ),
               ),
             ],
           ),
@@ -531,7 +572,9 @@ class _DayState extends State<_Day> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _ctrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1000));
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
     if (widget.today) _ctrl.repeat(reverse: true);
   }
 
@@ -562,15 +605,22 @@ class _DayState extends State<_Day> with SingleTickerProviderStateMixin {
       ),
       alignment: Alignment.center,
       child: widget.today
-          ? const Icon(Icons.local_fire_department,
-              size: 18, color: Colors.white)
+          ? const Icon(
+              Icons.local_fire_department,
+              size: 18,
+              color: Colors.white,
+            )
           : widget.done
-              ? const Icon(Icons.check, size: 16, color: Colors.white)
-              : Text(widget.number ?? '',
-                  style: wt(11,
-                      w: FontWeight.w700,
-                      color: C.onSurfaceVariant,
-                      ls: 0.44)),
+          ? const Icon(Icons.check, size: 16, color: Colors.white)
+          : Text(
+              widget.number ?? '',
+              style: wt(
+                11,
+                w: FontWeight.w700,
+                color: C.onSurfaceVariant,
+                ls: 0.44,
+              ),
+            ),
     );
     if (widget.today) {
       circle = FadeTransition(
@@ -580,11 +630,15 @@ class _DayState extends State<_Day> with SingleTickerProviderStateMixin {
     }
     return Column(
       children: [
-        Text(widget.label,
-            style: wt(11,
-                w: FontWeight.w700,
-                color: widget.today ? C.primary : C.onSurfaceVariant,
-                ls: 0.44)),
+        Text(
+          widget.label,
+          style: wt(
+            11,
+            w: FontWeight.w700,
+            color: widget.today ? C.primary : C.onSurfaceVariant,
+            ls: 0.44,
+          ),
+        ),
         const SizedBox(height: 4),
         circle,
       ],
@@ -620,11 +674,15 @@ class _CalorieCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 6),
-                      Text('ACTIVE BURNOUT',
-                          style: wt(13,
-                              w: FontWeight.w600,
-                              color: C.onSurfaceVariant,
-                              ls: 1.0)),
+                      Text(
+                        'ACTIVE BURNOUT',
+                        style: wt(
+                          13,
+                          w: FontWeight.w600,
+                          color: C.onSurfaceVariant,
+                          ls: 1.0,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -632,15 +690,20 @@ class _CalorieCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text('680',
-                          style: wt(34,
-                              w: FontWeight.w800, height: 42, ls: -0.7)),
+                      Text(
+                        '680',
+                        style: wt(34, w: FontWeight.w800, height: 42, ls: -0.7),
+                      ),
                       const SizedBox(width: 4),
-                      Text('kcal',
-                          style: wt(18,
-                              w: FontWeight.w700,
-                              color: C.onSurfaceVariant,
-                              height: 24)),
+                      Text(
+                        'kcal',
+                        style: wt(
+                          18,
+                          w: FontWeight.w700,
+                          color: C.onSurfaceVariant,
+                          height: 24,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -658,16 +721,24 @@ class _CalorieCard extends StatelessWidget {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('90%',
-                            style: wt(18,
-                                w: FontWeight.w700,
-                                color: C.primaryContainer,
-                                height: 18)),
-                        Text('GOAL',
-                            style: wt(10,
-                                w: FontWeight.w700,
-                                color: C.onSurfaceVariant,
-                                ls: 0.4)),
+                        Text(
+                          '90%',
+                          style: wt(
+                            18,
+                            w: FontWeight.w700,
+                            color: C.primaryContainer,
+                            height: 18,
+                          ),
+                        ),
+                        Text(
+                          'GOAL',
+                          style: wt(
+                            10,
+                            w: FontWeight.w700,
+                            color: C.onSurfaceVariant,
+                            ls: 0.4,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -683,10 +754,14 @@ class _CalorieCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Daily Target: 750 kcal',
-                        style: wt(12, color: C.onSurfaceVariant, ls: 0.12)),
-                    Text('70 kcal left',
-                        style: wt(13, w: FontWeight.w700, color: C.primary)),
+                    Text(
+                      'Daily Target: 750 kcal',
+                      style: wt(12, color: C.onSurfaceVariant, ls: 0.12),
+                    ),
+                    Text(
+                      '70 kcal left',
+                      style: wt(13, w: FontWeight.w700, color: C.primary),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 6),
@@ -700,8 +775,9 @@ class _CalorieCard extends StatelessWidget {
                       value: v,
                       minHeight: 10,
                       backgroundColor: C.surfaceContainer,
-                      valueColor:
-                          const AlwaysStoppedAnimation(C.primaryContainer),
+                      valueColor: const AlwaysStoppedAnimation(
+                        C.primaryContainer,
+                      ),
                     ),
                   ),
                 ),
@@ -797,15 +873,21 @@ class _SubMetric extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label,
-                    overflow: TextOverflow.ellipsis,
-                    style: wt(11,
-                        w: FontWeight.w700,
-                        color: C.onSurfaceVariant,
-                        ls: 0.44)),
-                Text(value,
-                    overflow: TextOverflow.ellipsis,
-                    style: wt(18, w: FontWeight.w700, height: 24)),
+                Text(
+                  label,
+                  overflow: TextOverflow.ellipsis,
+                  style: wt(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.onSurfaceVariant,
+                    ls: 0.44,
+                  ),
+                ),
+                Text(
+                  value,
+                  overflow: TextOverflow.ellipsis,
+                  style: wt(18, w: FontWeight.w700, height: 24),
+                ),
               ],
             ),
           ),
@@ -882,19 +964,32 @@ class _WorkoutBannerState extends State<_WorkoutBanner> {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.fitness_center,
-                      size: 22, color: C.tertiaryFixed),
+                  const Icon(
+                    Icons.fitness_center,
+                    size: 22,
+                    color: C.tertiaryFixed,
+                  ),
                   const SizedBox(width: 4),
-                  Text('Ready to Train?',
-                      style: wt(18,
-                          w: FontWeight.w700,
-                          color: C.inverseOnSurface,
-                          height: 24)),
+                  Text(
+                    'Ready to Train?',
+                    style: wt(
+                      18,
+                      w: FontWeight.w700,
+                      color: C.inverseOnSurface,
+                      height: 24,
+                    ),
+                  ),
                 ],
               ),
-              Text('AUTO-SYNC',
-                  style: wt(11,
-                      w: FontWeight.w700, color: C.tertiaryFixed, ls: 0.44)),
+              Text(
+                'AUTO-SYNC',
+                style: wt(
+                  11,
+                  w: FontWeight.w700,
+                  color: C.tertiaryFixed,
+                  ls: 0.44,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -940,17 +1035,22 @@ class _WorkoutBannerState extends State<_WorkoutBanner> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.play_arrow,
-                            size: 20, color: Colors.white),
+                        const Icon(
+                          Icons.play_arrow,
+                          size: 20,
+                          color: Colors.white,
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           _selected == null
                               ? 'Start Active Workout'
                               : 'Start $_selected Workout',
-                          style: wt(18,
-                              w: FontWeight.w700,
-                              color: Colors.white,
-                              height: 24),
+                          style: wt(
+                            18,
+                            w: FontWeight.w700,
+                            color: Colors.white,
+                            height: 24,
+                          ),
                         ),
                       ],
                     ),
@@ -998,8 +1098,10 @@ class _WorkoutChip extends StatelessWidget {
             children: [
               Icon(icon, size: 16, color: selected ? Colors.white : iconColor),
               const SizedBox(width: 4),
-              Text(label,
-                  style: wt(13, w: FontWeight.w600, color: fg, ls: 0.26)),
+              Text(
+                label,
+                style: wt(13, w: FontWeight.w600, color: fg, ls: 0.26),
+              ),
             ],
           ),
         ),
@@ -1038,22 +1140,29 @@ class _StepsCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('STEP CADENCE',
-                      style: wt(13,
-                          w: FontWeight.w600,
-                          color: C.onSurfaceVariant,
-                          ls: 1.0)),
+                  Text(
+                    'STEP CADENCE',
+                    style: wt(
+                      13,
+                      w: FontWeight.w600,
+                      color: C.onSurfaceVariant,
+                      ls: 1.0,
+                    ),
+                  ),
                   const SizedBox(height: 2),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text('8,420',
-                          style: wt(28,
-                              w: FontWeight.w800, height: 32, ls: -0.8)),
+                      Text(
+                        '8,420',
+                        style: wt(28, w: FontWeight.w800, height: 32, ls: -0.8),
+                      ),
                       const SizedBox(width: 4),
-                      Text('/ 10,000 steps',
-                          style: wt(12, color: C.onSurfaceVariant)),
+                      Text(
+                        '/ 10,000 steps',
+                        style: wt(12, color: C.onSurfaceVariant),
+                      ),
                     ],
                   ),
                 ],
@@ -1065,8 +1174,11 @@ class _StepsCard extends StatelessWidget {
                   color: C.secondaryFixed,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.directions_walk,
-                    size: 22, color: C.onSecondaryFixed),
+                child: const Icon(
+                  Icons.directions_walk,
+                  size: 22,
+                  color: C.onSecondaryFixed,
+                ),
               ),
             ],
           ),
@@ -1096,11 +1208,14 @@ class _StepsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Hourly Activity Distribution',
-                  style: wt(13, w: FontWeight.w600, ls: 0.26)),
-              Text('Peak: 8am & 12pm',
-                  style: wt(11,
-                      w: FontWeight.w700, color: C.primary, ls: 0.44)),
+              Text(
+                'Hourly Activity Distribution',
+                style: wt(13, w: FontWeight.w600, ls: 0.26),
+              ),
+              Text(
+                'Peak: 8am & 12pm',
+                style: wt(11, w: FontWeight.w700, color: C.primary, ls: 0.44),
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -1115,9 +1230,7 @@ class _StepsCard extends StatelessWidget {
               height: 112,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  for (final b in _bars) Expanded(child: _Bar(b)),
-                ],
+                children: [for (final b in _bars) Expanded(child: _Bar(b))],
               ),
             ),
           ),
@@ -1138,8 +1251,8 @@ class _Bar extends StatelessWidget {
     final color = isPeak
         ? C.primaryContainer
         : tag == 'dim'
-            ? C.surfaceContainerHighest
-            : C.secondaryFixedDim;
+        ? C.surfaceContainerHighest
+        : C.secondaryFixedDim;
     return Column(
       children: [
         Expanded(
@@ -1154,16 +1267,22 @@ class _Bar extends StatelessWidget {
                     height: c.maxHeight * frac,
                     decoration: BoxDecoration(
                       color: color,
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(2)),
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(2),
+                      ),
                     ),
                   ),
                   if (isPeak)
                     Positioned(
                       bottom: c.maxHeight * frac + 2,
-                      child: Text(tag,
-                          style: wt(9,
-                              w: FontWeight.w800, color: C.primaryContainer)),
+                      child: Text(
+                        tag,
+                        style: wt(
+                          9,
+                          w: FontWeight.w800,
+                          color: C.primaryContainer,
+                        ),
+                      ),
                     ),
                 ],
               );
@@ -1171,10 +1290,14 @@ class _Bar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        Text(label,
-            style: wt(10,
-                w: isPeak ? FontWeight.w700 : FontWeight.w700,
-                color: isPeak ? C.primaryContainer : C.onSurfaceVariant)),
+        Text(
+          label,
+          style: wt(
+            10,
+            w: isPeak ? FontWeight.w700 : FontWeight.w700,
+            color: isPeak ? C.primaryContainer : C.onSurfaceVariant,
+          ),
+        ),
       ],
     );
   }
@@ -1216,11 +1339,15 @@ class _StatPill extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label,
-                  style: wt(11,
-                      w: FontWeight.w700,
-                      color: C.onSurfaceVariant,
-                      ls: 0.44)),
+              Text(
+                label,
+                style: wt(
+                  11,
+                  w: FontWeight.w700,
+                  color: C.onSurfaceVariant,
+                  ls: 0.44,
+                ),
+              ),
               Text(value, style: wt(18, w: FontWeight.w700, height: 24)),
             ],
           ),
@@ -1243,10 +1370,14 @@ class _CompletedWorkouts extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Today's Completed Workouts",
-                  style: wt(18, w: FontWeight.w700, height: 24)),
-              Text('2 Sessions',
-                  style: wt(13, w: FontWeight.w600, color: C.primary)),
+              Text(
+                "Today's Completed Workouts",
+                style: wt(18, w: FontWeight.w700, height: 24),
+              ),
+              Text(
+                '2 Sessions',
+                style: wt(13, w: FontWeight.w600, color: C.primary),
+              ),
             ],
           ),
         ),
@@ -1349,23 +1480,31 @@ class _WorkoutTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(title,
-                          overflow: TextOverflow.ellipsis,
-                          style: wt(18, w: FontWeight.w700, height: 24)),
+                      child: Text(
+                        title,
+                        overflow: TextOverflow.ellipsis,
+                        style: wt(18, w: FontWeight.w700, height: 24),
+                      ),
                     ),
                     const SizedBox(width: 6),
-                    Text(time,
-                        style: wt(11,
-                            w: FontWeight.w700,
-                            color: C.onSurfaceVariant,
-                            ls: 0.44)),
+                    Text(
+                      time,
+                      style: wt(
+                        11,
+                        w: FontWeight.w700,
+                        color: C.onSurfaceVariant,
+                        ls: 0.44,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    Text(duration,
-                        style: wt(12, color: C.onSurfaceVariant, ls: 0.12)),
+                    Text(
+                      duration,
+                      style: wt(12, color: C.onSurfaceVariant, ls: 0.12),
+                    ),
                     const SizedBox(width: 8),
                     Container(
                       width: 4,
@@ -1376,9 +1515,15 @@ class _WorkoutTile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Text(kcal,
-                        style: wt(12,
-                            w: FontWeight.w700, color: kcalColor, ls: 0.12)),
+                    Text(
+                      kcal,
+                      style: wt(
+                        12,
+                        w: FontWeight.w700,
+                        color: kcalColor,
+                        ls: 0.12,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -1388,17 +1533,15 @@ class _WorkoutTile extends StatelessWidget {
                   children: [
                     _Pill(
                       bg: C.surfaceLow,
-                      leading:
-                          const Icon(Icons.favorite, size: 14, color: C.error),
+                      leading: const Icon(
+                        Icons.favorite,
+                        size: 14,
+                        color: C.error,
+                      ),
                       text: bpm,
                       fg: C.onSurface,
                     ),
-                    _Pill(
-                      bg: tagBg,
-                      leading: tagLeading,
-                      text: tag,
-                      fg: tagFg,
-                    ),
+                    _Pill(bg: tagBg, leading: tagLeading, text: tag, fg: tagFg),
                   ],
                 ),
               ],
@@ -1436,8 +1579,10 @@ class _Pill extends StatelessWidget {
         children: [
           leading,
           const SizedBox(width: 4),
-          Text(text,
-              style: wt(11, w: FontWeight.w700, color: fg, ls: 0.44)),
+          Text(
+            text,
+            style: wt(11, w: FontWeight.w700, color: fg, ls: 0.44),
+          ),
         ],
       ),
     );
@@ -1462,25 +1607,36 @@ class _MilestoneBanner extends StatelessWidget {
               color: C.tertiaryContainer,
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.emoji_events,
-                size: 22, color: Colors.white),
+            child: const Icon(
+              Icons.emoji_events,
+              size: 22,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Calorie Milestone Approaching!',
-                    overflow: TextOverflow.ellipsis,
-                    style: wt(18,
-                        w: FontWeight.w700,
-                        color: C.onTertiaryFixedVariant,
-                        height: 24)),
-                Text('Just a 10-minute jog away from beating your weekly high.',
-                    style: wt(12,
-                        color: C.onTertiaryFixedVariant,
-                        height: 16,
-                        ls: 0.12)),
+                Text(
+                  'Calorie Milestone Approaching!',
+                  overflow: TextOverflow.ellipsis,
+                  style: wt(
+                    18,
+                    w: FontWeight.w700,
+                    color: C.onTertiaryFixedVariant,
+                    height: 24,
+                  ),
+                ),
+                Text(
+                  'Just a 10-minute jog away from beating your weekly high.',
+                  style: wt(
+                    12,
+                    color: C.onTertiaryFixedVariant,
+                    height: 16,
+                    ls: 0.12,
+                  ),
+                ),
               ],
             ),
           ),
@@ -1566,8 +1722,11 @@ class _StreakBanner extends StatelessWidget {
                     color: C.secondaryFixed,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.local_fire_department,
-                      size: 24, color: C.onSecondaryFixed),
+                  child: const Icon(
+                    Icons.local_fire_department,
+                    size: 24,
+                    color: C.onSecondaryFixed,
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -1576,28 +1735,38 @@ class _StreakBanner extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text('14-Day Streak',
-                              style: wt(18, w: FontWeight.w600, height: 24)),
+                          Text(
+                            '14-Day Streak',
+                            style: wt(18, w: FontWeight.w600, height: 24),
+                          ),
                           const SizedBox(width: 6),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 2),
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
                               color: C.tertiaryFixed,
                               borderRadius: BorderRadius.circular(999),
                             ),
-                            child: Text('Perfect',
-                                style: wt(11,
-                                    w: FontWeight.w700,
-                                    color: C.onTertiaryFixed,
-                                    ls: 0.44)),
+                            child: Text(
+                              'Perfect',
+                              style: wt(
+                                11,
+                                w: FontWeight.w700,
+                                color: C.onTertiaryFixed,
+                                ls: 0.44,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                      Text('Hydration & medications perfectly on track',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: wt(12, color: C.onSurfaceVariant, ls: 0.12)),
+                      Text(
+                        'Hydration & medications perfectly on track',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: wt(12, color: C.onSurfaceVariant, ls: 0.12),
+                      ),
                     ],
                   ),
                 ),
@@ -1611,8 +1780,11 @@ class _StreakBanner extends StatelessWidget {
                     child: const SizedBox(
                       width: 32,
                       height: 32,
-                      child: Icon(Icons.chevron_right,
-                          size: 18, color: C.onSurface),
+                      child: Icon(
+                        Icons.chevron_right,
+                        size: 18,
+                        color: C.onSurface,
+                      ),
                     ),
                   ),
                 ),
@@ -1681,22 +1853,30 @@ class _HydrationCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Text('Hydration Tracker',
-                      style: wt(18, w: FontWeight.w600, height: 24)),
+                  Text(
+                    'Hydration Tracker',
+                    style: wt(18, w: FontWeight.w600, height: 24),
+                  ),
                 ],
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: C.secondaryFixed,
                   borderRadius: BorderRadius.circular(999),
                 ),
-                child: Text('$pct% Reached',
-                    style: wt(11,
-                        w: FontWeight.w700,
-                        color: C.onSecondaryFixed,
-                        ls: 0.44)),
+                child: Text(
+                  '$pct% Reached',
+                  style: wt(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.onSecondaryFixed,
+                    ls: 0.44,
+                  ),
+                ),
               ),
             ],
           ),
@@ -1721,11 +1901,15 @@ class _HydrationCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('CURRENT INTAKE',
-                          style: wt(11,
-                              w: FontWeight.w700,
-                              color: C.onSurfaceVariant,
-                              ls: 0.44)),
+                      Text(
+                        'CURRENT INTAKE',
+                        style: wt(
+                          11,
+                          w: FontWeight.w700,
+                          color: C.onSurfaceVariant,
+                          ls: 0.44,
+                        ),
+                      ),
                       const SizedBox(height: 4),
                       FittedBox(
                         fit: BoxFit.scaleDown,
@@ -1734,45 +1918,70 @@ class _HydrationCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.alphabetic,
                           children: [
-                            Text(_fmt(intake),
-                                style: wt(34,
-                                    w: FontWeight.w800, height: 34, ls: -0.7)),
+                            Text(
+                              _fmt(intake),
+                              style: wt(
+                                34,
+                                w: FontWeight.w800,
+                                height: 34,
+                                ls: -0.7,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            Text('/ ${_fmt(goal)} ml',
-                                style: wt(12, color: C.onSurfaceVariant)),
+                            Text(
+                              '/ ${_fmt(goal)} ml',
+                              style: wt(12, color: C.onSurfaceVariant),
+                            ),
                           ],
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text.rich(
                         left > 0
-                            ? TextSpan(children: [
-                                TextSpan(
+                            ? TextSpan(
+                                children: [
+                                  TextSpan(
                                     text: '$left ml left',
-                                    style: wt(12,
-                                        w: FontWeight.w700,
-                                        color: C.secondary)),
-                                TextSpan(
+                                    style: wt(
+                                      12,
+                                      w: FontWeight.w700,
+                                      color: C.secondary,
+                                    ),
+                                  ),
+                                  TextSpan(
                                     text: ' to hit daily target.',
-                                    style: wt(12, color: C.onSurfaceVariant)),
-                              ])
+                                    style: wt(12, color: C.onSurfaceVariant),
+                                  ),
+                                ],
+                              )
                             : TextSpan(
                                 text: 'Daily target reached!',
-                                style: wt(12,
-                                    w: FontWeight.w700, color: C.secondary)),
+                                style: wt(
+                                  12,
+                                  w: FontWeight.w700,
+                                  color: C.secondary,
+                                ),
+                              ),
                       ),
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          const Icon(Icons.trending_up,
-                              size: 16, color: C.tertiary),
+                          const Icon(
+                            Icons.trending_up,
+                            size: 16,
+                            color: C.tertiary,
+                          ),
                           const SizedBox(width: 4),
                           Flexible(
-                            child: Text('+250 ml ahead of yesterday',
-                                style: wt(11,
-                                    w: FontWeight.w700,
-                                    color: C.tertiary,
-                                    ls: 0.44)),
+                            child: Text(
+                              '+250 ml ahead of yesterday',
+                              style: wt(
+                                11,
+                                w: FontWeight.w700,
+                                color: C.tertiary,
+                                ls: 0.44,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -1783,39 +1992,53 @@ class _HydrationCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Text('QUICK LOG',
-              style: wt(11,
-                  w: FontWeight.w700, color: C.onSurfaceVariant, ls: 0.44)),
+          Text(
+            'QUICK LOG',
+            style: wt(
+              11,
+              w: FontWeight.w700,
+              color: C.onSurfaceVariant,
+              ls: 0.44,
+            ),
+          ),
           const SizedBox(height: 4),
           Row(
             children: [
               Expanded(
-                  child: _LogPod(
-                      icon: Icons.local_cafe,
-                      amount: 200,
-                      name: 'Cup',
-                      onTap: onLog)),
+                child: _LogPod(
+                  icon: Icons.local_cafe,
+                  amount: 200,
+                  name: 'Cup',
+                  onTap: onLog,
+                ),
+              ),
               const SizedBox(width: 12),
               Expanded(
-                  child: _LogPod(
-                      icon: Icons.emoji_food_beverage,
-                      amount: 350,
-                      name: 'Mug',
-                      onTap: onLog)),
+                child: _LogPod(
+                  icon: Icons.emoji_food_beverage,
+                  amount: 350,
+                  name: 'Mug',
+                  onTap: onLog,
+                ),
+              ),
               const SizedBox(width: 12),
               Expanded(
-                  child: _LogPod(
-                      icon: Icons.local_drink,
-                      amount: 500,
-                      name: 'Bottle',
-                      onTap: onLog)),
+                child: _LogPod(
+                  icon: Icons.local_drink,
+                  amount: 500,
+                  name: 'Bottle',
+                  onTap: onLog,
+                ),
+              ),
               const SizedBox(width: 12),
               Expanded(
-                  child: _LogPod(
-                      icon: Icons.sports_gymnastics,
-                      amount: 750,
-                      name: 'Flask',
-                      onTap: onLog)),
+                child: _LogPod(
+                  icon: Icons.sports_gymnastics,
+                  amount: 750,
+                  name: 'Flask',
+                  onTap: onLog,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -1824,14 +2047,24 @@ class _HydrationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('HYDRATION SCHEDULE',
-                    style: wt(11,
-                        w: FontWeight.w700,
-                        color: C.onSurfaceVariant,
-                        ls: 0.44)),
-                Text('Smart Reminders',
-                    style: wt(11,
-                        w: FontWeight.w700, color: C.secondary, ls: 0.44)),
+                Text(
+                  'HYDRATION SCHEDULE',
+                  style: wt(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.onSurfaceVariant,
+                    ls: 0.44,
+                  ),
+                ),
+                Text(
+                  'Smart Reminders',
+                  style: wt(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.secondary,
+                    ls: 0.44,
+                  ),
+                ),
               ],
             ),
           ),
@@ -1847,13 +2080,22 @@ class _HydrationCard extends StatelessWidget {
               child: Row(
                 children: [
                   const _ScheduleSlot(
-                      time: '8:00 AM', note: '500ml logged', done: true),
+                    time: '8:00 AM',
+                    note: '500ml logged',
+                    done: true,
+                  ),
                   _connector(),
                   const _ScheduleSlot(
-                      time: '11:00 AM', note: '450ml logged', done: true),
+                    time: '11:00 AM',
+                    note: '450ml logged',
+                    done: true,
+                  ),
                   _connector(),
                   const _ScheduleSlot(
-                      time: '2:00 PM', note: 'Next (350ml)', done: false),
+                    time: '2:00 PM',
+                    note: 'Next (350ml)',
+                    done: false,
+                  ),
                 ],
               ),
             ),
@@ -1864,11 +2106,11 @@ class _HydrationCard extends StatelessWidget {
   }
 
   static Widget _connector() => Container(
-        width: 16,
-        height: 2,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        color: C.surfaceDim,
-      );
+    width: 16,
+    height: 2,
+    margin: const EdgeInsets.symmetric(horizontal: 8),
+    color: C.surfaceDim,
+  );
 }
 
 class _WaterGauge extends StatelessWidget {
@@ -1928,10 +2170,14 @@ class _WaterGauge extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 for (final m in const ['2.5L', '1.8L', '1.0L', '0.2L'])
-                  Text(m,
-                      style: wt(9,
-                          w: FontWeight.w700,
-                          color: C.onSurfaceVariant.withOpacity(0.4))),
+                  Text(
+                    m,
+                    style: wt(
+                      9,
+                      w: FontWeight.w700,
+                      color: C.onSurfaceVariant.withOpacity(0.4),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -1969,11 +2215,12 @@ class _LogPod extends StatelessWidget {
             children: [
               Icon(icon, size: 22, color: C.secondary),
               const SizedBox(height: 4),
-              Text('+${amount}ml',
-                  maxLines: 1,
-                  style: wt(11, w: FontWeight.w700, ls: 0.44)),
-              Text(name,
-                  style: wt(10, color: C.onSurfaceVariant)),
+              Text(
+                '+${amount}ml',
+                maxLines: 1,
+                style: wt(11, w: FontWeight.w700, ls: 0.44),
+              ),
+              Text(name, style: wt(10, color: C.onSurfaceVariant)),
             ],
           ),
         ),
@@ -1987,15 +2234,19 @@ class _ScheduleSlot extends StatelessWidget {
   final String note;
   final bool done;
 
-  const _ScheduleSlot(
-      {required this.time, required this.note, required this.done});
+  const _ScheduleSlot({
+    required this.time,
+    required this.note,
+    required this.done,
+  });
 
   @override
   Widget build(BuildContext context) {
     final icon = done
         ? const Icon(Icons.check_circle, size: 18, color: C.tertiary)
         : const Pulse(
-            child: Icon(Icons.schedule, size: 18, color: C.secondary));
+            child: Icon(Icons.schedule, size: 18, color: C.secondary),
+          );
     return Row(
       children: [
         icon,
@@ -2004,10 +2255,14 @@ class _ScheduleSlot extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(time, style: wt(11, w: FontWeight.w700, ls: 0.44)),
-            Text(note,
-                style: wt(10,
-                    w: FontWeight.w700,
-                    color: done ? C.tertiary : C.secondary)),
+            Text(
+              note,
+              style: wt(
+                10,
+                w: FontWeight.w700,
+                color: done ? C.tertiary : C.secondary,
+              ),
+            ),
           ],
         ),
       ],
@@ -2049,15 +2304,21 @@ class _MedicationsCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Text('Medications & Rx',
-                      style: wt(18, w: FontWeight.w600, height: 24)),
+                  Text(
+                    'Medications & Rx',
+                    style: wt(18, w: FontWeight.w600, height: 24),
+                  ),
                 ],
               ),
-              Text(taken ? '1 of 3 remaining' : '2 of 3 remaining',
-                  style: wt(11,
-                      w: FontWeight.w700,
-                      color: C.onSurfaceVariant,
-                      ls: 0.44)),
+              Text(
+                taken ? '1 of 3 remaining' : '2 of 3 remaining',
+                style: wt(
+                  11,
+                  w: FontWeight.w700,
+                  color: C.onSurfaceVariant,
+                  ls: 0.44,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -2077,23 +2338,29 @@ class _MedicationsCard extends StatelessWidget {
                     color: C.errorContainer,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.inventory_2,
-                      size: 18, color: C.onErrorContainer),
+                  child: const Icon(
+                    Icons.inventory_2,
+                    size: 18,
+                    color: C.onErrorContainer,
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Magnesium Glycinate',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: wt(13, w: FontWeight.w700, ls: 0.26)),
-                      Text('4 doses remaining • Refill soon',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: wt(12,
-                              color: C.onErrorContainer, ls: 0.12)),
+                      Text(
+                        'Magnesium Glycinate',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: wt(13, w: FontWeight.w700, ls: 0.26),
+                      ),
+                      Text(
+                        '4 doses remaining • Refill soon',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: wt(12, color: C.onErrorContainer, ls: 0.12),
+                      ),
                     ],
                   ),
                 ),
@@ -2108,9 +2375,13 @@ class _MedicationsCard extends StatelessWidget {
                     onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      child: Text('Order',
-                          style: wt(11, w: FontWeight.w700, ls: 0.44)),
+                        horizontal: 12,
+                        vertical: 4,
+                      ),
+                      child: Text(
+                        'Order',
+                        style: wt(11, w: FontWeight.w700, ls: 0.44),
+                      ),
                     ),
                   ),
                 ),
@@ -2206,7 +2477,9 @@ class _MedRow extends StatelessWidget {
           children: [
             _MedIcon(icon: icon, bg: iconBg, fg: iconFg),
             const SizedBox(width: 8),
-            Expanded(child: _MedText(title: title, pill: pill, sub: sub)),
+            Expanded(
+              child: _MedText(title: title, pill: pill, sub: sub),
+            ),
             const SizedBox(width: 8),
             Icon(
               done ? Icons.task_alt : Icons.radio_button_unchecked,
@@ -2228,11 +2501,11 @@ class _MedIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(color: bg, shape: BoxShape.circle),
-        child: Icon(icon, size: 20, color: fg),
-      );
+    width: 40,
+    height: 40,
+    decoration: BoxDecoration(color: bg, shape: BoxShape.circle),
+    child: Icon(icon, size: 20, color: fg),
+  );
 }
 
 class _MedText extends StatelessWidget {
@@ -2258,10 +2531,12 @@ class _MedText extends StatelessWidget {
         Row(
           children: [
             Flexible(
-              child: Text(title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: wt(13, w: FontWeight.w700, ls: 0.26)),
+              child: Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: wt(13, w: FontWeight.w700, ls: 0.26),
+              ),
             ),
             const SizedBox(width: 6),
             Container(
@@ -2270,15 +2545,19 @@ class _MedText extends StatelessWidget {
                 color: pillBg,
                 borderRadius: BorderRadius.circular(999),
               ),
-              child: Text(pill,
-                  style: wt(10, w: FontWeight.w700, color: pillFg, ls: 0.4)),
+              child: Text(
+                pill,
+                style: wt(10, w: FontWeight.w700, color: pillFg, ls: 0.4),
+              ),
             ),
           ],
         ),
-        Text(sub,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: wt(12, color: C.onSurfaceVariant, ls: 0.12)),
+        Text(
+          sub,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: wt(12, color: C.onSurfaceVariant, ls: 0.12),
+        ),
       ],
     );
   }
@@ -2317,9 +2596,10 @@ class _DueDoseCard extends StatelessWidget {
           Row(
             children: [
               const _MedIcon(
-                  icon: Icons.medication,
-                  bg: C.secondaryFixed,
-                  fg: C.onSecondaryFixed),
+                icon: Icons.medication,
+                bg: C.secondaryFixed,
+                fg: C.onSecondaryFixed,
+              ),
               const SizedBox(width: 8),
               const Expanded(
                 child: _MedText(
@@ -2333,15 +2613,18 @@ class _DueDoseCard extends StatelessWidget {
               const SizedBox(width: 8),
               Pulse(
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: C.primaryFixed,
                     borderRadius: BorderRadius.circular(999),
                   ),
-                  child: Text('DUE',
-                      style: wt(10,
-                          w: FontWeight.w700, color: C.onPrimaryFixed)),
+                  child: Text(
+                    'DUE',
+                    style: wt(10, w: FontWeight.w700, color: C.onPrimaryFixed),
+                  ),
                 ),
               ),
             ],
@@ -2361,18 +2644,21 @@ class _DueDoseCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(snoozed ? Icons.alarm_on : Icons.snooze,
-                              size: 16,
-                              color:
-                                  snoozed ? C.onSecondaryFixed : C.onSurface),
+                          Icon(
+                            snoozed ? Icons.alarm_on : Icons.snooze,
+                            size: 16,
+                            color: snoozed ? C.onSecondaryFixed : C.onSurface,
+                          ),
                           const SizedBox(width: 4),
-                          Text(snoozed ? 'Snoozed +15m' : 'Snooze 15m',
-                              style: wt(13,
-                                  w: FontWeight.w600,
-                                  color: snoozed
-                                      ? C.onSecondaryFixed
-                                      : C.onSurface,
-                                  ls: 0.26)),
+                          Text(
+                            snoozed ? 'Snoozed +15m' : 'Snooze 15m',
+                            style: wt(
+                              13,
+                              w: FontWeight.w600,
+                              color: snoozed ? C.onSecondaryFixed : C.onSurface,
+                              ls: 0.26,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -2393,14 +2679,21 @@ class _DueDoseCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.check_circle,
-                              size: 16, color: Colors.white),
+                          const Icon(
+                            Icons.check_circle,
+                            size: 16,
+                            color: Colors.white,
+                          ),
                           const SizedBox(width: 4),
-                          Text('Take Now',
-                              style: wt(13,
-                                  w: FontWeight.w600,
-                                  color: Colors.white,
-                                  ls: 0.26)),
+                          Text(
+                            'Take Now',
+                            style: wt(
+                              13,
+                              w: FontWeight.w600,
+                              color: Colors.white,
+                              ls: 0.26,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -2414,7 +2707,6 @@ class _DueDoseCard extends StatelessWidget {
     );
   }
 }
-
 
 // ═════════════ NUTRITION_SCREEN ═════════════
 const double _rXl = 48;
@@ -2443,8 +2735,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
     return s;
   }
 
-  int get _glassesLeft =>
-      ((_waterGoalMl - _waterMl) / 250).ceil().clamp(0, 99);
+  int get _glassesLeft => ((_waterGoalMl - _waterMl) / 250).ceil().clamp(0, 99);
 
   @override
   Widget build(BuildContext context) {
@@ -2501,36 +2792,40 @@ class _XlCard extends StatelessWidget {
 }
 
 Widget _glow(Color c, double size) => IgnorePointer(
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(colors: [c, c.withOpacity(0)]),
-        ),
-      ),
-    );
+  child: Container(
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      gradient: RadialGradient(colors: [c, c.withOpacity(0)]),
+    ),
+  ),
+);
 
 // ───────────── Calorie telemetry ─────────────
 class _CalorieTelemetryCard extends StatelessWidget {
   const _CalorieTelemetryCard();
 
   Widget _legend(Color c, String text, {bool medium = false}) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: c, shape: BoxShape.circle),
-          ),
-          const SizedBox(width: 6),
-          Text(text,
-              style: wt(11,
-                  w: medium ? FontWeight.w500 : FontWeight.w700,
-                  color: C.onSurfaceVariant,
-                  ls: 0.44)),
-        ],
-      );
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Container(
+        width: 8,
+        height: 8,
+        decoration: BoxDecoration(color: c, shape: BoxShape.circle),
+      ),
+      const SizedBox(width: 6),
+      Text(
+        text,
+        style: wt(
+          11,
+          w: medium ? FontWeight.w500 : FontWeight.w700,
+          color: C.onSurfaceVariant,
+          ls: 0.44,
+        ),
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -2540,13 +2835,15 @@ class _CalorieTelemetryCard extends StatelessWidget {
         children: [
           const Positioned.fill(child: ColoredBox(color: C.surfaceLowest)),
           Positioned(
-              right: -32,
-              top: -32,
-              child: _glow(C.primaryFixedDim.withOpacity(0.3), 144)),
+            right: -32,
+            top: -32,
+            child: _glow(C.primaryFixedDim.withOpacity(0.3), 144),
+          ),
           Positioned(
-              left: -32,
-              bottom: -32,
-              child: _glow(C.secondaryFixed.withOpacity(0.5), 128)),
+            left: -32,
+            bottom: -32,
+            child: _glow(C.secondaryFixed.withOpacity(0.5), 128),
+          ),
           _XlCard(
             color: Colors.transparent,
             child: Column(
@@ -2565,16 +2862,22 @@ class _CalorieTelemetryCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 4),
-                        Text('CALORIE TELEMETRY',
-                            style: wt(13,
-                                w: FontWeight.w700,
-                                color: C.onSurfaceVariant,
-                                ls: 1.0)),
+                        Text(
+                          'CALORIE TELEMETRY',
+                          style: wt(
+                            13,
+                            w: FontWeight.w700,
+                            color: C.onSurfaceVariant,
+                            ls: 1.0,
+                          ),
+                        ),
                       ],
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: C.tertiaryFixed,
                         borderRadius: BorderRadius.circular(999),
@@ -2582,14 +2885,21 @@ class _CalorieTelemetryCard extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.bolt,
-                              size: 14, color: C.onTertiaryFixedVariant),
+                          const Icon(
+                            Icons.bolt,
+                            size: 14,
+                            color: C.onTertiaryFixedVariant,
+                          ),
                           const SizedBox(width: 4),
-                          Text('Target on pace',
-                              style: wt(11,
-                                  w: FontWeight.w700,
-                                  color: C.onTertiaryFixedVariant,
-                                  ls: 0.44)),
+                          Text(
+                            'Target on pace',
+                            style: wt(
+                              11,
+                              w: FontWeight.w700,
+                              color: C.onTertiaryFixedVariant,
+                              ls: 0.44,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -2603,25 +2913,37 @@ class _CalorieTelemetryCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('REMAINING',
-                            style: wt(11,
-                                w: FontWeight.w700,
-                                color: C.onSurfaceVariant,
-                                ls: 0.5)),
+                        Text(
+                          'REMAINING',
+                          style: wt(
+                            11,
+                            w: FontWeight.w700,
+                            color: C.onSurfaceVariant,
+                            ls: 0.5,
+                          ),
+                        ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.alphabetic,
                           children: [
-                            Text('780',
-                                style: wt(34,
-                                    w: FontWeight.w800,
-                                    height: 42,
-                                    ls: -0.7)),
+                            Text(
+                              '780',
+                              style: wt(
+                                34,
+                                w: FontWeight.w800,
+                                height: 42,
+                                ls: -0.7,
+                              ),
+                            ),
                             const SizedBox(width: 4),
-                            Text('kcal',
-                                style: wt(13,
-                                    w: FontWeight.w600,
-                                    color: C.onSurfaceVariant)),
+                            Text(
+                              'kcal',
+                              style: wt(
+                                13,
+                                w: FontWeight.w600,
+                                color: C.onSurfaceVariant,
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -2629,16 +2951,24 @@ class _CalorieTelemetryCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text('1,420 / 2,200 kcal',
-                            style: wt(11,
-                                w: FontWeight.w700,
-                                color: C.onSurfaceVariant,
-                                ls: 0.44)),
-                        Text('65% of budget',
-                            style: wt(12,
-                                w: FontWeight.w700,
-                                color: C.primary,
-                                ls: 0.12)),
+                        Text(
+                          '1,420 / 2,200 kcal',
+                          style: wt(
+                            11,
+                            w: FontWeight.w700,
+                            color: C.onSurfaceVariant,
+                            ls: 0.44,
+                          ),
+                        ),
+                        Text(
+                          '65% of budget',
+                          style: wt(
+                            12,
+                            w: FontWeight.w700,
+                            color: C.primary,
+                            ls: 0.12,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -2705,13 +3035,19 @@ class _TargetMacros extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Target Macros',
-                  style: wt(18, w: FontWeight.w700, height: 24)),
-              Text('Daily Breakdown',
-                  style: wt(11,
-                      w: FontWeight.w700,
-                      color: C.onSurfaceVariant,
-                      ls: 0.44)),
+              Text(
+                'Target Macros',
+                style: wt(18, w: FontWeight.w700, height: 24),
+              ),
+              Text(
+                'Daily Breakdown',
+                style: wt(
+                  11,
+                  w: FontWeight.w700,
+                  color: C.onSurfaceVariant,
+                  ls: 0.44,
+                ),
+              ),
             ],
           ),
         ),
@@ -2814,8 +3150,9 @@ class _MacroCard extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                 color: bar,
-                borderRadius:
-                    const BorderRadius.horizontal(right: Radius.circular(999)),
+                borderRadius: const BorderRadius.horizontal(
+                  right: Radius.circular(999),
+                ),
               ),
             ),
           ),
@@ -2829,11 +3166,16 @@ class _MacroCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(name,
-                          style: wt(11, w: FontWeight.w700, ls: 0.44)),
-                      Text('$pct%',
-                          style: wt(11,
-                              w: FontWeight.w700, color: text, ls: 0.44)),
+                      Text(name, style: wt(11, w: FontWeight.w700, ls: 0.44)),
+                      Text(
+                        '$pct%',
+                        style: wt(
+                          11,
+                          w: FontWeight.w700,
+                          color: text,
+                          ls: 0.44,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -2841,14 +3183,19 @@ class _MacroCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(value,
-                          style: wt(22,
-                              w: FontWeight.w800, height: 24, ls: -0.6)),
-                      Text(goal,
-                          style: wt(11,
-                              w: FontWeight.w700,
-                              color: C.onSurfaceVariant,
-                              ls: 0.44)),
+                      Text(
+                        value,
+                        style: wt(22, w: FontWeight.w800, height: 24, ls: -0.6),
+                      ),
+                      Text(
+                        goal,
+                        style: wt(
+                          11,
+                          w: FontWeight.w700,
+                          color: C.onSurfaceVariant,
+                          ls: 0.44,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -2864,9 +3211,10 @@ class _MacroCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(left,
-                  style: wt(11,
-                      w: FontWeight.w600, color: leftColor, ls: -0.1)),
+              Text(
+                left,
+                style: wt(11, w: FontWeight.w600, color: leftColor, ls: -0.1),
+              ),
             ],
           ),
         ],
@@ -2888,11 +3236,14 @@ class _LoggedMeals extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Logged Meals',
-                  style: wt(18, w: FontWeight.w700, height: 24)),
-              Text('3 of 4 logged',
-                  style: wt(13,
-                      w: FontWeight.w700, color: C.primary, ls: 0.26)),
+              Text(
+                'Logged Meals',
+                style: wt(18, w: FontWeight.w700, height: 24),
+              ),
+              Text(
+                '3 of 4 logged',
+                style: wt(13, w: FontWeight.w700, color: C.primary, ls: 0.26),
+              ),
             ],
           ),
         ),
@@ -3009,26 +3360,24 @@ class _MealCardState extends State<_MealCard> {
       child: Image.network(
         widget.imageUrl,
         fit: BoxFit.cover,
-        loadingBuilder: (context, child, progress) => progress == null
-            ? child
-            : Container(color: C.surfaceContainer),
+        loadingBuilder: (context, child, progress) =>
+            progress == null ? child : Container(color: C.surfaceContainer),
         errorBuilder: (_, __, ___) => Container(
           color: C.surfaceContainerHighest,
-          child: Icon(widget.fallbackIcon,
-              size: 22, color: C.onSurfaceVariant),
+          child: Icon(widget.fallbackIcon, size: 22, color: C.onSurfaceVariant),
         ),
       ),
     );
   }
 
   Widget _macroChip(String t) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-        decoration: BoxDecoration(
-          color: C.surfaceContainer,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(t, style: wt(11, w: FontWeight.w600, ls: 0.44)),
-      );
+    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+    decoration: BoxDecoration(
+      color: C.surfaceContainer,
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Text(t, style: wt(11, w: FontWeight.w600, ls: 0.44)),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -3055,36 +3404,47 @@ class _MealCardState extends State<_MealCard> {
                             Row(
                               children: [
                                 Flexible(
-                                  child: Text(widget.title,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: wt(13,
-                                          w: FontWeight.w700, ls: 0.26)),
+                                  child: Text(
+                                    widget.title,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: wt(13, w: FontWeight.w700, ls: 0.26),
+                                  ),
                                 ),
                                 const SizedBox(width: 6),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 2),
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: widget.pillBg,
                                     borderRadius: BorderRadius.circular(999),
                                   ),
-                                  child: Text(widget.time,
-                                      style: wt(11,
-                                          w: FontWeight.w700,
-                                          color: widget.pillFg,
-                                          ls: 0.44)),
+                                  child: Text(
+                                    widget.time,
+                                    style: wt(
+                                      11,
+                                      w: FontWeight.w700,
+                                      color: widget.pillFg,
+                                      ls: 0.44,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
                             ConstrainedBox(
-                              constraints:
-                                  const BoxConstraints(maxWidth: 170),
-                              child: Text(widget.desc,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: wt(12,
-                                      color: C.onSurfaceVariant, ls: 0.12)),
+                              constraints: const BoxConstraints(maxWidth: 170),
+                              child: Text(
+                                widget.desc,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: wt(
+                                  12,
+                                  color: C.onSurfaceVariant,
+                                  ls: 0.12,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -3096,13 +3456,19 @@ class _MealCardState extends State<_MealCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(widget.kcal,
-                        style: wt(18, w: FontWeight.w700, height: 24)),
-                    Text('kcal',
-                        style: wt(11,
-                            w: FontWeight.w700,
-                            color: C.onSurfaceVariant,
-                            ls: 0.44)),
+                    Text(
+                      widget.kcal,
+                      style: wt(18, w: FontWeight.w700, height: 24),
+                    ),
+                    Text(
+                      'kcal',
+                      style: wt(
+                        11,
+                        w: FontWeight.w700,
+                        color: C.onSurfaceVariant,
+                        ls: 0.44,
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -3127,19 +3493,24 @@ class _MealCardState extends State<_MealCard> {
                           for (var i = 0; i < widget.items.length; i++) ...[
                             if (i > 0) const SizedBox(height: 6),
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Flexible(
-                                  child: Text(widget.items[i].$1,
-                                      style: wt(12, ls: 0.12)),
+                                  child: Text(
+                                    widget.items[i].$1,
+                                    style: wt(12, ls: 0.12),
+                                  ),
                                 ),
                                 const SizedBox(width: 8),
-                                Text(widget.items[i].$2,
-                                    style: wt(11,
-                                        w: FontWeight.w700,
-                                        color: C.onSurfaceVariant,
-                                        ls: 0.44)),
+                                Text(
+                                  widget.items[i].$2,
+                                  style: wt(
+                                    11,
+                                    w: FontWeight.w700,
+                                    color: C.onSurfaceVariant,
+                                    ls: 0.44,
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -3167,8 +3538,11 @@ class _MealCardState extends State<_MealCard> {
                 child: SizedBox(
                   width: 36,
                   height: 36,
-                  child: Icon(widget.actionIcon,
-                      size: 18, color: C.onSurfaceVariant),
+                  child: Icon(
+                    widget.actionIcon,
+                    size: 18,
+                    color: C.onSurfaceVariant,
+                  ),
                 ),
               ),
             ],
@@ -3208,8 +3582,11 @@ class _DinnerCardState extends State<_DinnerCard> {
                       color: C.surfaceContainerHighest,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.dinner_dining,
-                        size: 24, color: C.onSurfaceVariant),
+                    child: const Icon(
+                      Icons.dinner_dining,
+                      size: 24,
+                      color: C.onSurfaceVariant,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Column(
@@ -3217,27 +3594,36 @@ class _DinnerCardState extends State<_DinnerCard> {
                     children: [
                       Row(
                         children: [
-                          Text('Dinner',
-                              style: wt(13, w: FontWeight.w700, ls: 0.26)),
+                          Text(
+                            'Dinner',
+                            style: wt(13, w: FontWeight.w700, ls: 0.26),
+                          ),
                           const SizedBox(width: 6),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 2),
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
                               color: C.surfaceContainerHighest,
                               borderRadius: BorderRadius.circular(999),
                             ),
-                            child: Text('Planned',
-                                style: wt(11,
-                                    w: FontWeight.w700,
-                                    color: C.onSurfaceVariant,
-                                    ls: 0.44)),
+                            child: Text(
+                              'Planned',
+                              style: wt(
+                                11,
+                                w: FontWeight.w700,
+                                color: C.onSurfaceVariant,
+                                ls: 0.44,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                      Text('0 of 780 kcal allotted',
-                          style: wt(12,
-                              color: C.onSurfaceVariant, ls: 0.12)),
+                      Text(
+                        '0 of 780 kcal allotted',
+                        style: wt(12, color: C.onSurfaceVariant, ls: 0.12),
+                      ),
                     ],
                   ),
                 ],
@@ -3245,14 +3631,24 @@ class _DinnerCardState extends State<_DinnerCard> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('780 kcal',
-                      style: wt(11,
-                          w: FontWeight.w700, color: C.primary, ls: 0.44)),
-                  Text('Available',
-                      style: wt(11,
-                          w: FontWeight.w700,
-                          color: C.onSurfaceVariant,
-                          ls: 0.44)),
+                  Text(
+                    '780 kcal',
+                    style: wt(
+                      11,
+                      w: FontWeight.w700,
+                      color: C.primary,
+                      ls: 0.44,
+                    ),
+                  ),
+                  Text(
+                    'Available',
+                    style: wt(
+                      11,
+                      w: FontWeight.w700,
+                      color: C.onSurfaceVariant,
+                      ls: 0.44,
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -3272,24 +3668,32 @@ class _DinnerCardState extends State<_DinnerCard> {
                       borderRadius: BorderRadius.circular(999),
                       onTap: () async {
                         setState(() => _pressed = true);
-                        await Future.delayed(
-                            const Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
                         if (mounted) setState(() => _pressed = false);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 16),
+                          vertical: 12,
+                          horizontal: 16,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.add,
-                                size: 18, color: Colors.white),
+                            const Icon(
+                              Icons.add,
+                              size: 18,
+                              color: Colors.white,
+                            ),
                             const SizedBox(width: 6),
-                            Text('Log Dinner',
-                                style: wt(13,
-                                    w: FontWeight.w600,
-                                    color: Colors.white,
-                                    ls: 0.26)),
+                            Text(
+                              'Log Dinner',
+                              style: wt(
+                                13,
+                                w: FontWeight.w600,
+                                color: Colors.white,
+                                ls: 0.26,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -3308,19 +3712,25 @@ class _DinnerCardState extends State<_DinnerCard> {
                     onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 16),
+                        vertical: 12,
+                        horizontal: 16,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.qr_code_scanner,
-                              size: 18, color: C.onSurface),
+                          const Icon(
+                            Icons.qr_code_scanner,
+                            size: 18,
+                            color: C.onSurface,
+                          ),
                           const SizedBox(width: 6),
                           Flexible(
-                            child: Text('Scan Barcode',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: wt(13,
-                                    w: FontWeight.w600, ls: 0.26)),
+                            child: Text(
+                              'Scan Barcode',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: wt(13, w: FontWeight.w600, ls: 0.26),
+                            ),
                           ),
                         ],
                       ),
@@ -3358,18 +3768,20 @@ class _MicrosHydration extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.water_drop,
-                      size: 20, color: C.secondary),
+                  const Icon(Icons.water_drop, size: 20, color: C.secondary),
                   const SizedBox(width: 6),
-                  Text('Micros & Hydration',
-                      style: wt(18, w: FontWeight.w700, height: 24)),
+                  Text(
+                    'Micros & Hydration',
+                    style: wt(18, w: FontWeight.w700, height: 24),
+                  ),
                 ],
               ),
               GestureDetector(
                 onTap: () {},
-                child: Text('Details',
-                    style: wt(11,
-                        w: FontWeight.w700, color: C.primary, ls: 0.44)),
+                child: Text(
+                  'Details',
+                  style: wt(11, w: FontWeight.w700, color: C.primary, ls: 0.44),
+                ),
               ),
             ],
           ),
@@ -3421,29 +3833,39 @@ class _MicrosHydration extends StatelessWidget {
                           color: C.secondaryFixed,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.local_drink,
-                            size: 18, color: C.onSecondaryFixed),
+                        child: const Icon(
+                          Icons.local_drink,
+                          size: 18,
+                          color: C.onSecondaryFixed,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${waterLabel}L of 3.0L Hydration',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: wt(13,
-                                    w: FontWeight.w700,
-                                    height: 16,
-                                    ls: 0.26)),
                             Text(
-                                glassesLeft == 0
-                                    ? 'Hydration goal reached'
-                                    : '$glassesLeft glasses remaining for goal',
-                                style: wt(11,
-                                    w: FontWeight.w500,
-                                    color: C.secondary,
-                                    ls: 0.44)),
+                              '${waterLabel}L of 3.0L Hydration',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: wt(
+                                13,
+                                w: FontWeight.w700,
+                                height: 16,
+                                ls: 0.26,
+                              ),
+                            ),
+                            Text(
+                              glassesLeft == 0
+                                  ? 'Hydration goal reached'
+                                  : '$glassesLeft glasses remaining for goal',
+                              style: wt(
+                                11,
+                                w: FontWeight.w500,
+                                color: C.secondary,
+                                ls: 0.44,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -3510,13 +3932,17 @@ class _MicroTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
-                child: Text(label,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: wt(11,
-                        w: FontWeight.w500,
-                        color: C.onSurfaceVariant,
-                        ls: 0.44)),
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: wt(
+                    11,
+                    w: FontWeight.w500,
+                    color: C.onSurfaceVariant,
+                    ls: 0.44,
+                  ),
+                ),
               ),
               Icon(icon, size: 16, color: iconColor),
             ],
@@ -3535,23 +3961,33 @@ class _MicroTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(value,
-                          style: wt(18, w: FontWeight.w700, height: 24)),
+                      Text(
+                        value,
+                        style: wt(18, w: FontWeight.w700, height: 24),
+                      ),
                       const SizedBox(width: 2),
-                      Text(unit,
-                          style: wt(11,
-                              w: FontWeight.w700,
-                              color: C.onSurfaceVariant,
-                              ls: 0.44)),
+                      Text(
+                        unit,
+                        style: wt(
+                          11,
+                          w: FontWeight.w700,
+                          color: C.onSurfaceVariant,
+                          ls: 0.44,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
-              Text('$pct%',
-                  style: wt(11,
-                      w: FontWeight.w700,
-                      color: textColor ?? color,
-                      ls: 0.44)),
+              Text(
+                '$pct%',
+                style: wt(
+                  11,
+                  w: FontWeight.w700,
+                  color: textColor ?? color,
+                  ls: 0.44,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 8),

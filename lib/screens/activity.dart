@@ -56,19 +56,22 @@ class WellsyApp extends StatelessWidget {
       title: 'Wellsy',
       debugShowCheckedModeBanner: false,
       theme: base.copyWith(
-        textTheme: base.textTheme
-            .apply(fontFamily: GoogleFonts.plusJakartaSans().fontFamily),
+        textTheme: base.textTheme.apply(
+          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+        ),
       ),
       home: const ActivityScreen(),
     );
   }
 }
 
-TextStyle _t(double size,
-    {FontWeight w = FontWeight.w400,
-    Color color = C.onSurface,
-    double? height,
-    double? ls}) {
+TextStyle _t(
+  double size, {
+  FontWeight w = FontWeight.w400,
+  Color color = C.onSurface,
+  double? height,
+  double? ls,
+}) {
   return GoogleFonts.plusJakartaSans(
     fontSize: size,
     fontWeight: w,
@@ -91,10 +94,12 @@ class _ActivityScreenState extends State<ActivityScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
     return Scaffold(
       backgroundColor: C.surface,
       extendBody: true,
@@ -161,9 +166,15 @@ class _Header extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       Row(
                         children: [
-                          Text('Wellsy',
-                              style: _t(18,
-                                  w: FontWeight.w700, height: 24, ls: -0.2)),
+                          Text(
+                            'Wellsy',
+                            style: _t(
+                              18,
+                              w: FontWeight.w700,
+                              height: 24,
+                              ls: -0.2,
+                            ),
+                          ),
                           const SizedBox(width: 4),
                           Container(
                             width: 6,
@@ -177,14 +188,21 @@ class _Header extends StatelessWidget implements PreferredSizeWidget {
                       ),
                       Row(
                         children: [
-                          const Icon(Icons.calendar_today,
-                              size: 13, color: C.primary),
+                          const Icon(
+                            Icons.calendar_today,
+                            size: 13,
+                            color: C.primary,
+                          ),
                           const SizedBox(width: 4),
-                          Text('Today, Oct 24',
-                              style: _t(11,
-                                  w: FontWeight.w700,
-                                  color: C.onSurfaceVariant,
-                                  ls: 0.44)),
+                          Text(
+                            'Today, Oct 24',
+                            style: _t(
+                              11,
+                              w: FontWeight.w700,
+                              color: C.onSurfaceVariant,
+                              ls: 0.44,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -253,7 +271,10 @@ class _DefaultAvatarPainter extends CustomPainter {
     // shoulders
     canvas.drawOval(
       Rect.fromCenter(
-          center: Offset(w / 2, h * 0.95), width: w * 0.78, height: h * 0.72),
+        center: Offset(w / 2, h * 0.95),
+        width: w * 0.78,
+        height: h * 0.72,
+      ),
       paint,
     );
   }
@@ -313,25 +334,36 @@ class _StreakCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.local_fire_department,
-                      size: 20, color: C.primaryContainer),
+                  const Icon(
+                    Icons.local_fire_department,
+                    size: 20,
+                    color: C.primaryContainer,
+                  ),
                   const SizedBox(width: 4),
-                  Text('5-Day Active Streak',
-                      style: _t(18, w: FontWeight.w600, height: 24)),
+                  Text(
+                    '5-Day Active Streak',
+                    style: _t(18, w: FontWeight.w600, height: 24),
+                  ),
                 ],
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 2,
+                ),
                 decoration: BoxDecoration(
                   color: C.primaryFixed,
                   borderRadius: BorderRadius.circular(999),
                 ),
-                child: Text('In the Zone',
-                    style: _t(11,
-                        w: FontWeight.w700,
-                        color: C.onPrimaryFixedVariant,
-                        ls: 0.44)),
+                child: Text(
+                  'In the Zone',
+                  style: _t(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.onPrimaryFixedVariant,
+                    ls: 0.44,
+                  ),
+                ),
               ),
             ],
           ),
@@ -373,7 +405,9 @@ class _DayState extends State<_Day> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _ctrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1000));
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
     if (widget.today) _ctrl.repeat(reverse: true);
   }
 
@@ -404,15 +438,22 @@ class _DayState extends State<_Day> with SingleTickerProviderStateMixin {
       ),
       alignment: Alignment.center,
       child: widget.today
-          ? const Icon(Icons.local_fire_department,
-              size: 18, color: Colors.white)
+          ? const Icon(
+              Icons.local_fire_department,
+              size: 18,
+              color: Colors.white,
+            )
           : widget.done
-              ? const Icon(Icons.check, size: 16, color: Colors.white)
-              : Text(widget.number ?? '',
-                  style: _t(11,
-                      w: FontWeight.w700,
-                      color: C.onSurfaceVariant,
-                      ls: 0.44)),
+          ? const Icon(Icons.check, size: 16, color: Colors.white)
+          : Text(
+              widget.number ?? '',
+              style: _t(
+                11,
+                w: FontWeight.w700,
+                color: C.onSurfaceVariant,
+                ls: 0.44,
+              ),
+            ),
     );
     if (widget.today) {
       circle = FadeTransition(
@@ -422,11 +463,15 @@ class _DayState extends State<_Day> with SingleTickerProviderStateMixin {
     }
     return Column(
       children: [
-        Text(widget.label,
-            style: _t(11,
-                w: FontWeight.w700,
-                color: widget.today ? C.primary : C.onSurfaceVariant,
-                ls: 0.44)),
+        Text(
+          widget.label,
+          style: _t(
+            11,
+            w: FontWeight.w700,
+            color: widget.today ? C.primary : C.onSurfaceVariant,
+            ls: 0.44,
+          ),
+        ),
         const SizedBox(height: 4),
         circle,
       ],
@@ -462,11 +507,15 @@ class _CalorieCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 6),
-                      Text('ACTIVE BURNOUT',
-                          style: _t(13,
-                              w: FontWeight.w600,
-                              color: C.onSurfaceVariant,
-                              ls: 1.0)),
+                      Text(
+                        'ACTIVE BURNOUT',
+                        style: _t(
+                          13,
+                          w: FontWeight.w600,
+                          color: C.onSurfaceVariant,
+                          ls: 1.0,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -474,15 +523,20 @@ class _CalorieCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text('680',
-                          style: _t(34,
-                              w: FontWeight.w800, height: 42, ls: -0.7)),
+                      Text(
+                        '680',
+                        style: _t(34, w: FontWeight.w800, height: 42, ls: -0.7),
+                      ),
                       const SizedBox(width: 4),
-                      Text('kcal',
-                          style: _t(18,
-                              w: FontWeight.w700,
-                              color: C.onSurfaceVariant,
-                              height: 24)),
+                      Text(
+                        'kcal',
+                        style: _t(
+                          18,
+                          w: FontWeight.w700,
+                          color: C.onSurfaceVariant,
+                          height: 24,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -500,16 +554,24 @@ class _CalorieCard extends StatelessWidget {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('90%',
-                            style: _t(18,
-                                w: FontWeight.w700,
-                                color: C.primaryContainer,
-                                height: 18)),
-                        Text('GOAL',
-                            style: _t(10,
-                                w: FontWeight.w700,
-                                color: C.onSurfaceVariant,
-                                ls: 0.4)),
+                        Text(
+                          '90%',
+                          style: _t(
+                            18,
+                            w: FontWeight.w700,
+                            color: C.primaryContainer,
+                            height: 18,
+                          ),
+                        ),
+                        Text(
+                          'GOAL',
+                          style: _t(
+                            10,
+                            w: FontWeight.w700,
+                            color: C.onSurfaceVariant,
+                            ls: 0.4,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -525,10 +587,14 @@ class _CalorieCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Daily Target: 750 kcal',
-                        style: _t(12, color: C.onSurfaceVariant, ls: 0.12)),
-                    Text('70 kcal left',
-                        style: _t(13, w: FontWeight.w700, color: C.primary)),
+                    Text(
+                      'Daily Target: 750 kcal',
+                      style: _t(12, color: C.onSurfaceVariant, ls: 0.12),
+                    ),
+                    Text(
+                      '70 kcal left',
+                      style: _t(13, w: FontWeight.w700, color: C.primary),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 6),
@@ -542,8 +608,9 @@ class _CalorieCard extends StatelessWidget {
                       value: v,
                       minHeight: 10,
                       backgroundColor: C.surfaceContainer,
-                      valueColor:
-                          const AlwaysStoppedAnimation(C.primaryContainer),
+                      valueColor: const AlwaysStoppedAnimation(
+                        C.primaryContainer,
+                      ),
                     ),
                   ),
                 ),
@@ -639,15 +706,21 @@ class _SubMetric extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label,
-                    overflow: TextOverflow.ellipsis,
-                    style: _t(11,
-                        w: FontWeight.w700,
-                        color: C.onSurfaceVariant,
-                        ls: 0.44)),
-                Text(value,
-                    overflow: TextOverflow.ellipsis,
-                    style: _t(18, w: FontWeight.w700, height: 24)),
+                Text(
+                  label,
+                  overflow: TextOverflow.ellipsis,
+                  style: _t(
+                    11,
+                    w: FontWeight.w700,
+                    color: C.onSurfaceVariant,
+                    ls: 0.44,
+                  ),
+                ),
+                Text(
+                  value,
+                  overflow: TextOverflow.ellipsis,
+                  style: _t(18, w: FontWeight.w700, height: 24),
+                ),
               ],
             ),
           ),
@@ -724,19 +797,32 @@ class _WorkoutBannerState extends State<_WorkoutBanner> {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.fitness_center,
-                      size: 22, color: C.tertiaryFixed),
+                  const Icon(
+                    Icons.fitness_center,
+                    size: 22,
+                    color: C.tertiaryFixed,
+                  ),
                   const SizedBox(width: 4),
-                  Text('Ready to Train?',
-                      style: _t(18,
-                          w: FontWeight.w700,
-                          color: C.inverseOnSurface,
-                          height: 24)),
+                  Text(
+                    'Ready to Train?',
+                    style: _t(
+                      18,
+                      w: FontWeight.w700,
+                      color: C.inverseOnSurface,
+                      height: 24,
+                    ),
+                  ),
                 ],
               ),
-              Text('AUTO-SYNC',
-                  style: _t(11,
-                      w: FontWeight.w700, color: C.tertiaryFixed, ls: 0.44)),
+              Text(
+                'AUTO-SYNC',
+                style: _t(
+                  11,
+                  w: FontWeight.w700,
+                  color: C.tertiaryFixed,
+                  ls: 0.44,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -782,17 +868,22 @@ class _WorkoutBannerState extends State<_WorkoutBanner> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.play_arrow,
-                            size: 20, color: Colors.white),
+                        const Icon(
+                          Icons.play_arrow,
+                          size: 20,
+                          color: Colors.white,
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           _selected == null
                               ? 'Start Active Workout'
                               : 'Start $_selected Workout',
-                          style: _t(18,
-                              w: FontWeight.w700,
-                              color: Colors.white,
-                              height: 24),
+                          style: _t(
+                            18,
+                            w: FontWeight.w700,
+                            color: Colors.white,
+                            height: 24,
+                          ),
                         ),
                       ],
                     ),
@@ -840,8 +931,10 @@ class _WorkoutChip extends StatelessWidget {
             children: [
               Icon(icon, size: 16, color: selected ? Colors.white : iconColor),
               const SizedBox(width: 4),
-              Text(label,
-                  style: _t(13, w: FontWeight.w600, color: fg, ls: 0.26)),
+              Text(
+                label,
+                style: _t(13, w: FontWeight.w600, color: fg, ls: 0.26),
+              ),
             ],
           ),
         ),
@@ -880,22 +973,29 @@ class _StepsCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('STEP CADENCE',
-                      style: _t(13,
-                          w: FontWeight.w600,
-                          color: C.onSurfaceVariant,
-                          ls: 1.0)),
+                  Text(
+                    'STEP CADENCE',
+                    style: _t(
+                      13,
+                      w: FontWeight.w600,
+                      color: C.onSurfaceVariant,
+                      ls: 1.0,
+                    ),
+                  ),
                   const SizedBox(height: 2),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text('8,420',
-                          style: _t(28,
-                              w: FontWeight.w800, height: 32, ls: -0.8)),
+                      Text(
+                        '8,420',
+                        style: _t(28, w: FontWeight.w800, height: 32, ls: -0.8),
+                      ),
                       const SizedBox(width: 4),
-                      Text('/ 10,000 steps',
-                          style: _t(12, color: C.onSurfaceVariant)),
+                      Text(
+                        '/ 10,000 steps',
+                        style: _t(12, color: C.onSurfaceVariant),
+                      ),
                     ],
                   ),
                 ],
@@ -907,8 +1007,11 @@ class _StepsCard extends StatelessWidget {
                   color: C.secondaryFixed,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.directions_walk,
-                    size: 22, color: C.onSecondaryFixed),
+                child: const Icon(
+                  Icons.directions_walk,
+                  size: 22,
+                  color: C.onSecondaryFixed,
+                ),
               ),
             ],
           ),
@@ -938,11 +1041,14 @@ class _StepsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Hourly Activity Distribution',
-                  style: _t(13, w: FontWeight.w600, ls: 0.26)),
-              Text('Peak: 8am & 12pm',
-                  style: _t(11,
-                      w: FontWeight.w700, color: C.primary, ls: 0.44)),
+              Text(
+                'Hourly Activity Distribution',
+                style: _t(13, w: FontWeight.w600, ls: 0.26),
+              ),
+              Text(
+                'Peak: 8am & 12pm',
+                style: _t(11, w: FontWeight.w700, color: C.primary, ls: 0.44),
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -957,9 +1063,7 @@ class _StepsCard extends StatelessWidget {
               height: 112,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  for (final b in _bars) Expanded(child: _Bar(b)),
-                ],
+                children: [for (final b in _bars) Expanded(child: _Bar(b))],
               ),
             ),
           ),
@@ -980,8 +1084,8 @@ class _Bar extends StatelessWidget {
     final color = isPeak
         ? C.primaryContainer
         : tag == 'dim'
-            ? C.surfaceContainerHighest
-            : C.secondaryFixedDim;
+        ? C.surfaceContainerHighest
+        : C.secondaryFixedDim;
     return Column(
       children: [
         Expanded(
@@ -996,16 +1100,22 @@ class _Bar extends StatelessWidget {
                     height: c.maxHeight * frac,
                     decoration: BoxDecoration(
                       color: color,
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(2)),
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(2),
+                      ),
                     ),
                   ),
                   if (isPeak)
                     Positioned(
                       bottom: c.maxHeight * frac + 2,
-                      child: Text(tag,
-                          style: _t(9,
-                              w: FontWeight.w800, color: C.primaryContainer)),
+                      child: Text(
+                        tag,
+                        style: _t(
+                          9,
+                          w: FontWeight.w800,
+                          color: C.primaryContainer,
+                        ),
+                      ),
                     ),
                 ],
               );
@@ -1013,10 +1123,14 @@ class _Bar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        Text(label,
-            style: _t(10,
-                w: isPeak ? FontWeight.w700 : FontWeight.w700,
-                color: isPeak ? C.primaryContainer : C.onSurfaceVariant)),
+        Text(
+          label,
+          style: _t(
+            10,
+            w: isPeak ? FontWeight.w700 : FontWeight.w700,
+            color: isPeak ? C.primaryContainer : C.onSurfaceVariant,
+          ),
+        ),
       ],
     );
   }
@@ -1058,11 +1172,15 @@ class _StatPill extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label,
-                  style: _t(11,
-                      w: FontWeight.w700,
-                      color: C.onSurfaceVariant,
-                      ls: 0.44)),
+              Text(
+                label,
+                style: _t(
+                  11,
+                  w: FontWeight.w700,
+                  color: C.onSurfaceVariant,
+                  ls: 0.44,
+                ),
+              ),
               Text(value, style: _t(18, w: FontWeight.w700, height: 24)),
             ],
           ),
@@ -1085,10 +1203,14 @@ class _CompletedWorkouts extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Today's Completed Workouts",
-                  style: _t(18, w: FontWeight.w700, height: 24)),
-              Text('2 Sessions',
-                  style: _t(13, w: FontWeight.w600, color: C.primary)),
+              Text(
+                "Today's Completed Workouts",
+                style: _t(18, w: FontWeight.w700, height: 24),
+              ),
+              Text(
+                '2 Sessions',
+                style: _t(13, w: FontWeight.w600, color: C.primary),
+              ),
             ],
           ),
         ),
@@ -1191,23 +1313,31 @@ class _WorkoutTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Text(title,
-                          overflow: TextOverflow.ellipsis,
-                          style: _t(18, w: FontWeight.w700, height: 24)),
+                      child: Text(
+                        title,
+                        overflow: TextOverflow.ellipsis,
+                        style: _t(18, w: FontWeight.w700, height: 24),
+                      ),
                     ),
                     const SizedBox(width: 6),
-                    Text(time,
-                        style: _t(11,
-                            w: FontWeight.w700,
-                            color: C.onSurfaceVariant,
-                            ls: 0.44)),
+                    Text(
+                      time,
+                      style: _t(
+                        11,
+                        w: FontWeight.w700,
+                        color: C.onSurfaceVariant,
+                        ls: 0.44,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    Text(duration,
-                        style: _t(12, color: C.onSurfaceVariant, ls: 0.12)),
+                    Text(
+                      duration,
+                      style: _t(12, color: C.onSurfaceVariant, ls: 0.12),
+                    ),
                     const SizedBox(width: 8),
                     Container(
                       width: 4,
@@ -1218,9 +1348,15 @@ class _WorkoutTile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Text(kcal,
-                        style: _t(12,
-                            w: FontWeight.w700, color: kcalColor, ls: 0.12)),
+                    Text(
+                      kcal,
+                      style: _t(
+                        12,
+                        w: FontWeight.w700,
+                        color: kcalColor,
+                        ls: 0.12,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -1230,17 +1366,15 @@ class _WorkoutTile extends StatelessWidget {
                   children: [
                     _Pill(
                       bg: C.surfaceLow,
-                      leading:
-                          const Icon(Icons.favorite, size: 14, color: C.error),
+                      leading: const Icon(
+                        Icons.favorite,
+                        size: 14,
+                        color: C.error,
+                      ),
                       text: bpm,
                       fg: C.onSurface,
                     ),
-                    _Pill(
-                      bg: tagBg,
-                      leading: tagLeading,
-                      text: tag,
-                      fg: tagFg,
-                    ),
+                    _Pill(bg: tagBg, leading: tagLeading, text: tag, fg: tagFg),
                   ],
                 ),
               ],
@@ -1278,8 +1412,10 @@ class _Pill extends StatelessWidget {
         children: [
           leading,
           const SizedBox(width: 4),
-          Text(text,
-              style: _t(11, w: FontWeight.w700, color: fg, ls: 0.44)),
+          Text(
+            text,
+            style: _t(11, w: FontWeight.w700, color: fg, ls: 0.44),
+          ),
         ],
       ),
     );
@@ -1304,25 +1440,36 @@ class _MilestoneBanner extends StatelessWidget {
               color: C.tertiaryContainer,
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.emoji_events,
-                size: 22, color: Colors.white),
+            child: const Icon(
+              Icons.emoji_events,
+              size: 22,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Calorie Milestone Approaching!',
-                    overflow: TextOverflow.ellipsis,
-                    style: _t(18,
-                        w: FontWeight.w700,
-                        color: C.onTertiaryFixedVariant,
-                        height: 24)),
-                Text('Just a 10-minute jog away from beating your weekly high.',
-                    style: _t(12,
-                        color: C.onTertiaryFixedVariant,
-                        height: 16,
-                        ls: 0.12)),
+                Text(
+                  'Calorie Milestone Approaching!',
+                  overflow: TextOverflow.ellipsis,
+                  style: _t(
+                    18,
+                    w: FontWeight.w700,
+                    color: C.onTertiaryFixedVariant,
+                    height: 24,
+                  ),
+                ),
+                Text(
+                  'Just a 10-minute jog away from beating your weekly high.',
+                  style: _t(
+                    12,
+                    color: C.onTertiaryFixedVariant,
+                    height: 16,
+                    ls: 0.12,
+                  ),
+                ),
               ],
             ),
           ),
@@ -1414,9 +1561,16 @@ class _NavItem extends StatelessWidget {
           children: [
             Icon(icon, size: 22, color: fg),
             const SizedBox(height: 2),
-            Text(label,
-                style: _t(11,
-                    w: FontWeight.w700, color: fg, height: 14, ls: 0.44)),
+            Text(
+              label,
+              style: _t(
+                11,
+                w: FontWeight.w700,
+                color: fg,
+                height: 14,
+                ls: 0.44,
+              ),
+            ),
           ],
         ),
       ),
