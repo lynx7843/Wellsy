@@ -7,14 +7,25 @@ import 'package:wellsy/main.dart';
 void main() {
   setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
 
-  testWidgets('Today dashboard renders and is interactive', (tester) async {
+  testWidgets('Demo sign-in opens the dashboard', (tester) async {
     tester.view.physicalSize = const Size(1170, 2532);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
 
     await tester.pumpWidget(const WellsyApp());
 
-    expect(find.text('Wellsy'), findsOneWidget);
+    expect(find.text('Demo login: test@email.com / password'), findsOneWidget);
+    final signInButton = find.byKey(const ValueKey('demo-sign-in-button'));
+    await tester.ensureVisible(signInButton);
+    await tester.tap(signInButton);
+    await tester.pump();
+    expect(find.text('Syncing...'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.text('Authenticated!'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 1200));
+    await tester.pump(const Duration(seconds: 1));
+
+    expect(find.text('Wellsy'), findsWidgets);
     expect(find.byIcon(Icons.person_rounded), findsOneWidget);
 
     await tester.scrollUntilVisible(find.text('250ml'), 200);
